@@ -1,0 +1,21 @@
+<h1>Registration successful!!!</h1>
+<h2>Login Now</h2>
+<style>
+    h3{
+        color : red;
+    }
+</style>
+
+{% for message in messages %}
+<h3>{{message}}</h3>
+{% endfor %}
+
+<form action="login" method="POST"> 
+    {% csrf_token %}
+    <p>Username:</p>
+        <input type="text" name="username"/>
+    <p>Password:</p>
+        <input type"password" name="password"/><br>
+    <input type="submit" name="submit"/><br>
+    <a href="/register">Register</a>
+</form>
