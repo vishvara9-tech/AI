@@ -9,15 +9,21 @@ from .serializers import StudentSerializers
 def home(request):
     return HttpResponse("Welcome to the DRF project!")
 
+
 def student_detail(request, pk):
     stu = Student.objects.get(id=pk)
     serializers = StudentSerializers(stu)
     # json_data = JSONRenderer().render(serializers.data)
     # return HttpResponse(json_data, content_type = 'application/json')
-    return JsonResponse(serializers.data)
+    return JsonResponse(serializers.data, safe=False)
 
 def student_list(request):
     stu = Student.objects.all()
     serializers = StudentSerializers(stu, many = True)
-    json_data = JSONRenderer().render(serializers.data)
-    return HttpResponse(json_data, content_type = 'application/json')     
+    # json_data = JSONRenderer().render(serializers.data)
+    # return HttpResponse(json_data, content_type = 'application/json')
+    return JsonResponse(serializers.data, safe=False)
+
+
+
+     
